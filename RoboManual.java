@@ -38,7 +38,7 @@ public class RoboManual {
         do {
             
             tela.gerarPlano();
-            
+
              try {
                 tela.definirAlimento(eixoY - 1, eixoX - 1); 
             } catch (PosicaoInvalidaException e) {
@@ -50,6 +50,8 @@ public class RoboManual {
                 movimento = walle.transformarComando(comando);
                 walle.mover(movimento);
                 tela.moverRobo(walle.getEixoY(), walle.getEixoX());
+                if(tela.checarEncontroAlimento(walle))
+                    tesouro = true;
             } catch( MovimentoInvalidoException e){
                 System.out.println(e);
             }

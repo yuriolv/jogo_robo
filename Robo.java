@@ -70,7 +70,7 @@ public class Robo {
 
         switch (movimento) {
             case 5:
-                if(eixoX + 1 > 4 || eixoY + 1 > 4 || eixoX - 1 < 0 || eixoY - 1 < 0)
+                if( eixoY - 1 < 0)
                     throw new MovimentoInvalidoException();
                 else               
                 eixoY--;    
