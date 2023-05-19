@@ -1,3 +1,4 @@
+import exception.MovimentoInvalidoException;
 import exception.PosicaoInvalidaException;
 
 public class Tela {
@@ -11,11 +12,11 @@ public class Tela {
         }
     }
 
-    public void definirAlimento(int eixoX, int eixoY) throws PosicaoInvalidaException{
+    public void definirAlimento(int eixoY, int eixoX) throws PosicaoInvalidaException{
         if(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0) 
             throw new PosicaoInvalidaException();
 
-        plano[eixoX][eixoY] = "A    ";
+        plano[eixoY][eixoX] = "A    ";
     }
 
     public void mostrarPlano(){
@@ -28,9 +29,39 @@ public class Tela {
         }
     }
 
-    public void moverRobo(int eixoY, int eixoX){
+    public void moverRobo(Robo robo, int movimento)  throws MovimentoInvalidoException{
+        int eixoX, eixoY;
+        eixoX = robo.getEixoX();
+        eixoY= robo.getEixoY();
+        switch (movimento) {
+            case 5:
+                eixoY--;
+            break;    
+            
+            case 2:              
+                eixoY++;  
+            break;    
+            
+            case 3:
+                eixoX++;  
+            break;    
+            
+            case 1:
+                eixoX--;  
+            break;
+        }
+        if(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0) 
+        throw new MovimentoInvalidoException(); 
+        
         plano[eixoY][eixoX] = "R    ";
     }
+    public void moverRobo(Robo robo){
+        int eixoX, eixoY;
+        eixoX = robo.getEixoX();
+        eixoY = robo.getEixoY();
+        plano[eixoY][eixoX] = "R    ";
+    }
+
 
     public boolean checarEncontroAlimento(Robo robo) {
         if(plano[robo.getEixoX()][robo.getEixoY()] == "A    ") {

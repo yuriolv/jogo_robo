@@ -1,25 +1,22 @@
 import java.util.*;
 
-import exception.MovimentoInvalidoException;
 public class Robo {
 
     protected int eixoX, eixoY, qtdMovimentoValido, qtdMovimentoInvalido;
     protected String cor;
+    protected boolean Moveu;
     
     public Robo(String cor){
         eixoX = 0;
         eixoY = 4;
         this.cor = cor;
+        Moveu=true;
     }
     
-    public void mover() throws MovimentoInvalidoException{ 
+    public void mover(){ 
         Random gerador = new Random();
         int movimento = gerador.nextInt(3);
-
-        if(eixoX + 1 > 4 || eixoY + 1 > 4 || eixoX - 1 < 0 || eixoY - 1 < 0)
-            throw new MovimentoInvalidoException();
-
-        else               
+           
             switch (movimento) {
                 case 0:
                     eixoY++;    
@@ -38,37 +35,27 @@ public class Robo {
             }
     }
 
-    public void mover(String movimento) throws MovimentoInvalidoException {
-        
-        if(eixoX + 1 > 4 || eixoY + 1 > 4 || eixoX - 1 < 0 || eixoY - 1 < 0)
-            throw new MovimentoInvalidoException();
+    public int transformarComando(String movimento){
 
-        else               
-            switch (movimento) {
-                case "Up":
-                    eixoY--;    
-                break;
+        switch (movimento) {
+            case "Up":
+                return 5;    
 
-                case "Down":              
-                    eixoY++;    
-                break;
+            case "Down":
+                return 2;                  
 
-                case "Right":               
-                    eixoX++;    
-                break;
-            
-                default:               
-                    eixoX--;
+            case "Right":
+                return 3;   
+            case "Left":
+                return 1;
+
+            default: 
+                return Integer.parseInt(movimento);
             }
             
     } 
 
-    public void mover(int movimento) throws MovimentoInvalidoException{
-
-        if(eixoX + 1 > 4 || eixoY + 1 > 4 || eixoX - 1 < 0 || eixoY - 1 < 0)
-            throw new MovimentoInvalidoException();
-
-        else               
+    public void mover(int movimento){         
             switch (movimento) {
                 case 5:
                     eixoY--;    
@@ -87,7 +74,7 @@ public class Robo {
             }
 
     }
-    
+
     public int getEixoX() {
         return eixoX;
     }
@@ -126,6 +113,14 @@ public class Robo {
 
     public void setCor(String cor) {
         this.cor = cor;
+    }
+
+    public boolean SeMoveu() {
+        return Moveu;
+    }
+
+    public void setMoveu(boolean Moveu) {
+        this.Moveu = Moveu;
     }
 
     
