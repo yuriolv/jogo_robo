@@ -7,7 +7,6 @@ public class RoboManual {
 
         tela.gerarPlano();
 
-        tela.definirAlimento(3, 3);
         
         try {
             walle.mover(2);
