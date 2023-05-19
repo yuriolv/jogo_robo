@@ -1,20 +1,21 @@
 import exception.MovimentoInvalidoException;
+import exception.PosicaoInvalidaException;
 
 public class Tela {
     String plano [][] = new String [5][5];
     
-
     public void gerarPlano(){
         for(int i=0;i < 5; i++){
             for(int j=0; j < 5; j++){
-                
-
                 plano[i][j] = "*    ";
             }
         }
     }
 
-    public void definirAlimento(int eixoY, int eixoX){
+    public void definirAlimento(int eixoY, int eixoX) throws PosicaoInvalidaException{
+        if(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0) 
+            throw new PosicaoInvalidaException();
+
         plano[eixoY][eixoX] = "A    ";
     }
 
@@ -28,10 +29,9 @@ public class Tela {
         }
     }
 
-    public void moverRobo(int eixoY, int eixoX) throws MovimentoInvalidoException {
+    public void moverRobo(int eixoY, int eixoX) throws MovimentoInvalidoException{
         if(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0) 
             throw new MovimentoInvalidoException();
-        else
         plano[eixoY][eixoX] = "R    ";
     }
 

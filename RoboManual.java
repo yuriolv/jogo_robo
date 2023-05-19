@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 import exception.MovimentoInvalidoException;
+import exception.PosicaoInvalidaException;
 
 public class RoboManual {
     public static void main(String[] args) {
@@ -21,8 +22,12 @@ public class RoboManual {
         System.out.print("Coordenada em y: ");
         eixoY = entrada.nextInt();
         tela.gerarPlano();
-        tela.definirAlimento(eixoY - 1, eixoX - 1);
-        
+        try {
+            tela.definirAlimento(eixoY - 1, eixoX - 1); 
+        } catch (PosicaoInvalidaException e) {
+            System.out.println(e);
+        }
+
         try {
             tela.moverRobo(walle.getEixoY(), walle.getEixoX());
         } catch( MovimentoInvalidoException e){
@@ -33,7 +38,12 @@ public class RoboManual {
         do {
             
             tela.gerarPlano();
-            tela.definirAlimento(eixoY - 1, eixoX - 1);
+            
+             try {
+                tela.definirAlimento(eixoY - 1, eixoX - 1); 
+            } catch (PosicaoInvalidaException e) {
+                System.out.println(e);
+            }
 
             try {
                 comando = entrada.next();
