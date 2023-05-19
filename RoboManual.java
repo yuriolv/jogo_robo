@@ -54,6 +54,7 @@ public class RoboManual {
             }
             
             tela.mostrarPlano();
+            tesouro = tela.checarEncontroAlimento(walle);
             
         } while (tesouro != true);
         entrada.close();
