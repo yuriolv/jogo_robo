@@ -17,8 +17,8 @@ public class Tela {
         }
     }
 
-    public void definirAlimento(int eixoX, int eixoY){
-        plano[eixoX][eixoY] = "A    ";
+    public void definirAlimento(int eixoY, int eixoX){
+        plano[eixoY][eixoX] = "A    ";
     }
 
     public void mostrarPlano(){
