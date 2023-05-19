@@ -37,4 +37,12 @@ public class Tela {
         else
         plano[eixoY][eixoX] = "R    ";
     }
+
+    public boolean checarEncontroAlimento(Robo robo) {
+        if(plano[robo.getEixoX()][robo.getEixoY()] == "A    ") {
+            return true;
+        }
+
+        return false;
+    }
 }
