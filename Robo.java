@@ -12,105 +12,82 @@ public class Robo {
         this.cor = cor;
     }
     
-    public void mover() throws MovimentoInvalidoException{ //resolvido na task de mover robô...
+    public void mover() throws MovimentoInvalidoException{ 
         Random gerador = new Random();
         int movimento = gerador.nextInt(3);
-        
-        switch (movimento) {
-            case 0:
-                if(eixoX + 1 > 4 || eixoY + 1 > 4 || eixoX - 1 < 0 || eixoY - 1 < 0)
-                    throw new MovimentoInvalidoException();
-                else               
-                eixoY++;    
-            break;
 
-            case 1:
-                if(eixoX + 1 > 4 || eixoY + 1 > 4 || eixoX - 1 < 0 || eixoY - 1 < 0)
-                    throw new MovimentoInvalidoException();
-                else               
-                eixoY--;    
-            break;
+        if(eixoX + 1 > 4 || eixoY + 1 > 4 || eixoX - 1 < 0 || eixoY - 1 < 0)
+            throw new MovimentoInvalidoException();
 
-            case 2:
-                if(eixoX + 1 > 4 || eixoY + 1 > 4 || eixoX - 1 < 0 || eixoY - 1 < 0)
-                    throw new MovimentoInvalidoException();
-                else               
-                eixoX++;    
-            break;
+        else               
+            switch (movimento) {
+                case 0:
+                    eixoY++;    
+                break;
+
+                case 1:            
+                    eixoY--;    
+                break;
+
+                case 2:         
+                    eixoX++;    
+                break;
             
-            default:
-                if(eixoX + 1 > 4 || eixoY + 1 > 4 || eixoX - 1 < 0 || eixoY - 1 < 0 )
-                    throw new MovimentoInvalidoException();
-                else
-                eixoX--;
-        }
+                default:
+                    eixoX--;
+            }
     }
 
     public void mover(String movimento) throws MovimentoInvalidoException {
+        
+        if(eixoX + 1 > 4 || eixoY + 1 > 4 || eixoX - 1 < 0 || eixoY - 1 < 0)
+            throw new MovimentoInvalidoException();
 
-        switch (movimento) {
-            case "Up":
-                if(eixoX + 1 > 4 || eixoY + 1 > 4 || eixoX - 1 < 0 || eixoY - 1 < 0)
-                    throw new MovimentoInvalidoException();
-                else               
-            eixoY--;    
-            break;
-            case "Down":
-                if(eixoX + 1 > 4 || eixoY + 1 > 4 || eixoX - 1 < 0 || eixoY - 1 < 0)
-                    throw new MovimentoInvalidoException();
-                else               
-            eixoY++;    
-            break;
+        else               
+            switch (movimento) {
+                case "Up":
+                    eixoY--;    
+                break;
 
-            case "Right":
-                if(eixoX + 1 > 4 || eixoY + 1 > 4 || eixoX - 1 < 0 || eixoY - 1 < 0)
-                    throw new MovimentoInvalidoException();
-                else               
-            eixoX++;    
-            break;
+                case "Down":              
+                    eixoY++;    
+                break;
+
+                case "Right":               
+                    eixoX++;    
+                break;
             
-            default:
-                if(eixoX + 1 > 4 || eixoY + 1 > 4 || eixoX - 1 < 0 || eixoY - 1 < 0)
-                    throw new MovimentoInvalidoException();
-                else               
-                eixoX--;
+                default:               
+                    eixoX--;
             }
             
     } 
 
     public void mover(int movimento) throws MovimentoInvalidoException{
 
-        switch (movimento) {
-            case 5:
-                if(eixoX + 1 > 4 || eixoY + 1 > 4 || eixoX - 1 < 0 || eixoY - 1 < 0)
-                    throw new MovimentoInvalidoException();
-                else               
-                eixoY--;    
-                break;
-            case 2:
-                if(eixoX + 1 > 4 || eixoY + 1 > 4 || eixoX - 1 < 0 || eixoY - 1 < 0)
-                    throw new MovimentoInvalidoException();
-                else               
-                eixoY++;    
-            break;
+        if(eixoX + 1 > 4 || eixoY + 1 > 4 || eixoX - 1 < 0 || eixoY - 1 < 0)
+            throw new MovimentoInvalidoException();
 
-            case 3:
-                if(eixoX + 1 > 4 || eixoY + 1 > 4 || eixoX - 1 < 0 || eixoY - 1 < 0)
-                    throw new MovimentoInvalidoException();
-                else               
-                eixoX++;    
-            break;
-            
-            default:
-                if(eixoX + 1 > 4 || eixoY + 1 > 4 || eixoX - 1 < 0 || eixoY - 1 < 0)
-                    throw new MovimentoInvalidoException();
-                else               
-                eixoX--;
-        }
+        else               
+            switch (movimento) {
+                case 5:
+                    eixoY--;    
+                break;
+
+                case 2:              
+                    eixoY++;    
+                break;
+
+                case 3:
+                   eixoX++;    
+                break;
+
+                default:              
+                    eixoX--;
+            }
 
     }
-
-
+    
     public int getEixoX() {
         return eixoX;
     }
