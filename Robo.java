@@ -4,13 +4,11 @@ public class Robo {
 
     protected int eixoX, eixoY, qtdMovimentoValido, qtdMovimentoInvalido;
     protected String cor;
-    protected boolean Moveu;
     
     public Robo(String cor){
         eixoX = 0;
         eixoY = 4;
         this.cor = cor;
-        Moveu=true;
     }
     
     public void mover(){ 
@@ -114,14 +112,4 @@ public class Robo {
     public void setCor(String cor) {
         this.cor = cor;
     }
-
-    public boolean SeMoveu() {
-        return Moveu;
-    }
-
-    public void setMoveu(boolean Moveu) {
-        this.Moveu = Moveu;
-    }
-
-    
 }

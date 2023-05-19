@@ -13,7 +13,7 @@ public class RoboManual {
         Scanner entrada = new Scanner(System.in);
         int eixoX, eixoY;
         String comando;
-        int movimento, testador;
+        int movimento;
 
 
         System.out.println("Digite as coordenadas da posicao do alimento (max 5)");
@@ -56,7 +56,7 @@ public class RoboManual {
             tela.mostrarPlano();
             
         } while (tesouro != true);
-
+        entrada.close();
     
     }
 }

@@ -51,7 +51,7 @@ public class Tela {
             break;
         }
         if(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0) 
-        throw new MovimentoInvalidoException(); 
+            throw new MovimentoInvalidoException(); 
         
         plano[eixoY][eixoX] = "R    ";
     }
