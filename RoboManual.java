@@ -11,6 +11,8 @@ public class RoboManual {
         boolean tesouro = false;
         Scanner entrada = new Scanner(System.in);
         int eixoX, eixoY;
+        String comando;
+        int movimento;
 
 
         System.out.println("Digite as coordenadas da posicao do alimento (max 5)");
@@ -34,6 +36,9 @@ public class RoboManual {
             tela.definirAlimento(eixoY - 1, eixoX - 1);
 
             try {
+                comando = entrada.next();
+                movimento = walle.transformarComando(comando);
+                walle.mover(movimento);
                 tela.moverRobo(walle.getEixoY(), walle.getEixoX());
             } catch( MovimentoInvalidoException e){
                 System.out.println(e);

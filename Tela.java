@@ -10,10 +10,7 @@ public class Tela {
                 
 
                 plano[i][j] = "*    ";
-                System.out.print(plano); 
             }
-            System.out.println();
-            System.out.println();
         }
     }
 

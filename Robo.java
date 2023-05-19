@@ -46,34 +46,22 @@ public class Robo {
         }
     }
 
-    public void mover(String movimento) throws MovimentoInvalidoException {
+    public int transformarComando(String movimento){
 
         switch (movimento) {
             case "Up":
-                if(eixoX + 1 > 4 || eixoY + 1 > 4 || eixoX - 1 < 0 || eixoY - 1 < 0)
-                    throw new MovimentoInvalidoException();
-                else               
-            eixoY--;    
-            break;
+                return 5;    
+
             case "Down":
-                if(eixoX + 1 > 4 || eixoY + 1 > 4 || eixoX - 1 < 0 || eixoY - 1 < 0)
-                    throw new MovimentoInvalidoException();
-                else               
-            eixoY++;    
-            break;
+                return 2;                  
 
             case "Right":
-                if(eixoX + 1 > 4 || eixoY + 1 > 4 || eixoX - 1 < 0 || eixoY - 1 < 0)
-                    throw new MovimentoInvalidoException();
-                else               
-            eixoX++;    
-            break;
-            
-            default:
-                if(eixoX + 1 > 4 || eixoY + 1 > 4 || eixoX - 1 < 0 || eixoY - 1 < 0)
-                    throw new MovimentoInvalidoException();
-                else               
-                eixoX--;
+                return 3;   
+            case "Left":
+                return 1;
+
+            default: 
+                return Integer.parseInt(movimento);
             }
             
     } 
