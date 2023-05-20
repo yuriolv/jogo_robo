@@ -12,11 +12,18 @@ public class Tela {
         }
     }
 
-    public void definirAlimento(int eixoY, int eixoX) throws PosicaoInvalidaException{
+    public int definirAlimento(int eixoY, int eixoX) throws PosicaoInvalidaException{
         if(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0) 
             throw new PosicaoInvalidaException();
 
+        if(eixoY > 2)
+            eixoY = 4 % eixoY;
+        else if(eixoY < 2)
+            eixoY = (eixoY % 10) - 6;
+
         plano[eixoY][eixoX] = "A    ";
+
+        return eixoY;
     }
 
     public void mostrarPlano(){
@@ -63,11 +70,30 @@ public class Tela {
     }
 
 
-    public boolean checarEncontroAlimento(Robo robo) {
-        if(plano[robo.getEixoX()][robo.getEixoY()] == "A    ") {
+    public boolean checarEncontroAlimento(Robo robo , int eixoX, int eixoY) {
+        if(robo.getEixoX() == eixoX && robo.getEixoY() == eixoY) { //aplicar a mesma lógica do definir alimento
             return true;
         }
 
         return false;
+    }
+
+    public void ClearConsole(){
+        try{
+            String operatingSystem = System.getProperty("os.name"); //Check the current operating system
+              
+            if(operatingSystem.contains("Windows")){
+                ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "cls");
+                Process startProcess = pb.inheritIO().start();
+                startProcess.waitFor();
+            } else {
+                ProcessBuilder pb = new ProcessBuilder("clear");
+                Process startProcess = pb.inheritIO().start();
+
+                startProcess.waitFor();
+            } 
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
 }

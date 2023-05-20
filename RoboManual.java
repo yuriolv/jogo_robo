@@ -11,50 +11,58 @@ public class RoboManual {
         
         boolean tesouro = false;
         Scanner entrada = new Scanner(System.in);
-        int eixoX, eixoY;
+        int eixoX, eixoY, newEixoY = 0;
         String comando;
         int movimento;
 
+        do{  
+            System.out.println("Digite as coordenadas da posicao do alimento (max 4)");
+            System.out.print("Coordenada em x: ");
+            eixoX = entrada.nextInt();
+            System.out.print("Coordenada em y: ");
+            eixoY = entrada.nextInt();
+            tela.gerarPlano();
 
-        System.out.println("Digite as coordenadas da posicao do alimento (max 5)");
-        System.out.print("Coordenada em x: ");
-        eixoX = entrada.nextInt();
-        System.out.print("Coordenada em y: ");
-        eixoY = entrada.nextInt();
-        tela.gerarPlano();
-        
-        try {
-            tela.moverRobo(walle);
-            tela.definirAlimento(eixoY - 1, eixoX - 1); 
-        } catch (PosicaoInvalidaException e) {
-            System.out.println(e);
-        }
+            try {
+                tela.moverRobo(walle);
+                newEixoY = tela.definirAlimento(eixoY, eixoX); 
+            } catch (PosicaoInvalidaException e) {
+                System.out.println(e);
+            }
+            tela.ClearConsole();
+        }while(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0);
+
+        tela.ClearConsole();
         tela.mostrarPlano();
         
         do {
-           
-                tela.gerarPlano();
-            
-            
+
+            tela.gerarPlano();
+
             try {
-                tela.definirAlimento(eixoY - 1, eixoX - 1);
+                tela.definirAlimento(eixoY, eixoX);
             } catch (PosicaoInvalidaException e) {
                 System.out.println(e);
             } 
 
              try {
+
                 comando = entrada.next();
                 movimento = walle.transformarComando(comando);
                 tela.moverRobo(walle, movimento);
+
                 walle.mover(movimento);
             } catch( MovimentoInvalidoException e){
+
                 System.out.println(e);
+
             } finally{
                 tela.moverRobo(walle);
             }
             
+            tela.ClearConsole();
             tela.mostrarPlano();
-            tesouro = tela.checarEncontroAlimento(walle);
+            tesouro = tela.checarEncontroAlimento(walle, eixoX, newEixoY);
             
         } while (tesouro != true);
         entrada.close();
