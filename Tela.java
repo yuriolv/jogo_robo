@@ -19,7 +19,7 @@ public class Tela {
         if(eixoY > 2)
             eixoY = 4 % eixoY;
         else if(eixoY < 2)
-            eixoY = (eixoY % 10) - 6;
+            eixoY = ((eixoY - 10) + 6) * -1;
 
         plano[eixoY][eixoX] = "A    ";
 

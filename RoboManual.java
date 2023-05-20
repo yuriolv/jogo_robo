@@ -2,12 +2,15 @@ import java.util.Scanner;
 
 import exception.MovimentoInvalidoException;
 import exception.PosicaoInvalidaException;
+import java.io.*;
 
 public class RoboManual {
     public static void main(String[] args) {
         Tela tela = new Tela();
         Robo walle = new Robo("ferrugem");
-        
+
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_YELLOW = "\u001B[33m";
         
         boolean tesouro = false;
         Scanner entrada = new Scanner(System.in);
@@ -42,7 +45,7 @@ public class RoboManual {
             try {
                 tela.definirAlimento(eixoY, eixoX);
             } catch (PosicaoInvalidaException e) {
-                System.out.println(e);
+                System.out.println(e );
                 tela.mostrarTransição(2000);
             } 
 
@@ -67,8 +70,9 @@ public class RoboManual {
             tesouro = tela.checarEncontroAlimento(walle, eixoX, newEixoY);
             
         } while (tesouro != true);
-        
-        System.out.println("Finalmente o wall-e encontrou o alimento!!");
+
+        System.out.println(ANSI_YELLOW + "Finalmente o wall-e encontrou o alimento!!" + ANSI_RESET);
+
         entrada.close();
     
     }
