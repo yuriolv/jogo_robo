@@ -96,4 +96,12 @@ public class Tela {
             System.out.println(e);
         }
     }
+
+    public void mostrarTransição(int tempo){
+        try {
+            Thread.sleep(tempo);
+        } catch (InterruptedException ex) {
+            // TODO: handle exception
+        }
+    }
 }

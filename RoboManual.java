@@ -43,6 +43,7 @@ public class RoboManual {
                 tela.definirAlimento(eixoY, eixoX);
             } catch (PosicaoInvalidaException e) {
                 System.out.println(e);
+                tela.mostrarTransição(2000);
             } 
 
              try {
@@ -55,6 +56,7 @@ public class RoboManual {
             } catch( MovimentoInvalidoException e){
 
                 System.out.println(e);
+                tela.mostrarTransição(2000);
 
             } finally{
                 tela.moverRobo(walle);
@@ -65,6 +67,8 @@ public class RoboManual {
             tesouro = tela.checarEncontroAlimento(walle, eixoX, newEixoY);
             
         } while (tesouro != true);
+        
+        System.out.println("Finalmente o wall-e encontrou o alimento!!");
         entrada.close();
     
     }
