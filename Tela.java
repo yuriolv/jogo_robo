@@ -19,7 +19,7 @@ public class Tela {
         if(eixoY > 2)
             eixoY = 4 % eixoY;
         else if(eixoY < 2)
-            eixoY = ((eixoY - 10) + 6) * -1;
+            eixoY = (eixoY % 10) - 6;
 
         plano[eixoY][eixoX] = "A    ";
 
@@ -60,13 +60,21 @@ public class Tela {
         if(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0) 
             throw new MovimentoInvalidoException(); 
         
-        plano[eixoY][eixoX] = "R    ";
+            if(robo instanceof Robo)
+            plano[eixoY][eixoX] = "R    ";
+            else
+            plano[eixoY][eixoX] = "RI   ";
+            
     }
     public void moverRobo(Robo robo){
         int eixoX, eixoY;
         eixoX = robo.getEixoX();
         eixoY = robo.getEixoY();
-        plano[eixoY][eixoX] = "R    ";
+        if(robo instanceof Robo)
+            plano[eixoY][eixoX] = "R    ";
+        else
+            plano[eixoY][eixoX] = "RI   ";
+            
     }
 
 
@@ -94,14 +102,6 @@ public class Tela {
             } 
         }catch(Exception e){
             System.out.println(e);
-        }
-    }
-
-    public void mostrarTransição(int tempo){
-        try {
-            Thread.sleep(tempo);
-        } catch (InterruptedException ex) {
-            // TODO: handle exception
         }
     }
 }

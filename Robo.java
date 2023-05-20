@@ -11,28 +11,26 @@ public class Robo {
         this.cor = cor;
     }
     
-    public void mover(){ 
-        Random gerador = new Random();
-        int movimento = gerador.nextInt(3);
-           
-            switch (movimento) {
-                case 0:
-                    eixoY++;    
-                break;
+    
+    public void mover(int movimento){         
+           switch (movimento) {
+               case 5:
+                   eixoY--;    
+               break;
 
-                case 1:            
-                    eixoY--;    
-                break;
+               case 2:              
+                   eixoY++;    
+               break;
 
-                case 2:         
-                    eixoX++;    
-                break;
-            
-                default:
-                    eixoX--;
-            }
-    }
+               case 3:
+                  eixoX++;    
+               break;
 
+               default:              
+                   eixoX--;
+           }
+
+   } 
     public int transformarComando(String movimento){
 
         switch (movimento) {
@@ -53,24 +51,32 @@ public class Robo {
             
     } 
 
-    public void mover(int movimento){         
-            switch (movimento) {
-                case 5:
-                    eixoY--;    
+    public int gerarMovimento(){
+        Random gerador = new Random();
+        int numeroGerado = gerador.nextInt(3);
+        
+        switch (numeroGerado) {
+            
+            case 0:
+                numeroGerado=5;
+                System.out.println("in");    
                 break;
-
-                case 2:              
-                    eixoY++;    
+                
+                case 1:
+                numeroGerado= 2;                  
+                System.out.println("in");    
                 break;
-
-                case 3:
-                   eixoX++;    
+                
+                case 2:
+                numeroGerado= 3;                  
+                System.out.println("in");    
                 break;
-
-                default:              
-                    eixoX--;
-            }
-
+                
+                default:
+                numeroGerado= 1;  
+                System.out.println("in");    
+        }                
+        return numeroGerado;
     }
 
     public int getEixoX() {

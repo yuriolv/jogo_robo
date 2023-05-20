@@ -2,21 +2,17 @@ import java.util.Scanner;
 
 import exception.MovimentoInvalidoException;
 import exception.PosicaoInvalidaException;
-import java.io.*;
 
 public class RoboManual {
     public static void main(String[] args) {
         Tela tela = new Tela();
         Robo walle = new Robo("ferrugem");
-
-        String ANSI_RESET = "\u001B[0m";
-        String ANSI_YELLOW = "\u001B[33m";
+        Scanner entrada = new Scanner(System.in);
         
         boolean tesouro = false;
-        Scanner entrada = new Scanner(System.in);
-        int eixoX, eixoY, newEixoY = 0;
+        int movimento, eixoX, eixoY, newEixoY = 0;
+        
         String comando;
-        int movimento;
 
         do{  
             System.out.println("Digite as coordenadas da posicao do alimento (max 4)");
@@ -35,7 +31,6 @@ public class RoboManual {
             tela.ClearConsole();
         }while(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0);
 
-        tela.ClearConsole();
         tela.mostrarPlano();
         
         do {
@@ -45,8 +40,7 @@ public class RoboManual {
             try {
                 tela.definirAlimento(eixoY, eixoX);
             } catch (PosicaoInvalidaException e) {
-                System.out.println(e );
-                tela.mostrarTransição(2000);
+                System.out.println(e);
             } 
 
              try {
@@ -59,7 +53,6 @@ public class RoboManual {
             } catch( MovimentoInvalidoException e){
 
                 System.out.println(e);
-                tela.mostrarTransição(2000);
 
             } finally{
                 tela.moverRobo(walle);
@@ -70,9 +63,6 @@ public class RoboManual {
             tesouro = tela.checarEncontroAlimento(walle, eixoX, newEixoY);
             
         } while (tesouro != true);
-
-        System.out.println(ANSI_YELLOW + "Finalmente o wall-e encontrou o alimento!!" + ANSI_RESET);
-
         entrada.close();
     
     }
