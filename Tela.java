@@ -40,6 +40,7 @@ public class Tela {
         int eixoX, eixoY;
         eixoX = robo.getEixoX();
         eixoY= robo.getEixoY();
+        
         switch (movimento) {
             case 5:
                 eixoY--;
