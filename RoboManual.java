@@ -9,7 +9,8 @@ public class RoboManual {
         Robo walle = new Robo("ferrugem");
         Scanner entrada = new Scanner(System.in);
         
-        
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_YELLOW = "\u001B[33m";
 
         boolean tesouro = false;
         int movimento, eixoX, eixoY, newEixoY = 0;
@@ -43,6 +44,7 @@ public class RoboManual {
                 tela.definirAlimento(eixoY, eixoX);
             } catch (PosicaoInvalidaException e) {
                 System.out.println(e);
+                tela.mostrarTransição(2000);
             } 
 
              try {
@@ -55,6 +57,7 @@ public class RoboManual {
             } catch( MovimentoInvalidoException e){
 
                 System.out.println(e);
+                tela.mostrarTransição(2000);
 
             } finally{
                 tela.moverRobo(walle);
@@ -65,6 +68,8 @@ public class RoboManual {
             tesouro = tela.checarEncontroAlimento(walle, eixoX, newEixoY);
             
         } while (tesouro != true);
+
+        System.out.println(ANSI_YELLOW + "Finalmente o wall-e encontrou o alimento!!" + ANSI_RESET);
         entrada.close();
     
     }
