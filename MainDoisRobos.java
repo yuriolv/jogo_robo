@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
-
-
+import exception.MovimentoInvalidoException;
 import exception.PosicaoInvalidaException;
 
 public class MainDoisRobos {
@@ -50,10 +49,18 @@ public class MainDoisRobos {
             //System.out.println("------ Vez de Wall-e se mover ------");
 
             movimento = walle.gerarMovimento();
-            walle.mover(movimento);
-            tela.moverRobo(walle);
+            try {
+                tela.moverRobo(walle, movimento);
+                walle.mover(movimento);
+            } catch(MovimentoInvalidoException e) {
+                System.out.printf("ultimo movimento: %d\n", movimento);
+                System.out.println(e);
+            } finally {
+                tela.moverRobo(walle);
+            }
+
             
-            tela.mostrarTransição(2000);
+            tela.mostrarTransição(2500);
 
             tela.ClearConsole();
             tela.mostrarPlano();
