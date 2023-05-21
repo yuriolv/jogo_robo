@@ -7,13 +7,12 @@ public class DueloRoboInteligente {
     public static void main(String args[]) {
         Tela tela = new Tela();
         Robo robo1 = new Robo("Azul");
-        Robo robo2 = new Robo("Preto");
+        Robo robo2 = new RoboInteligente("Preto");
         Scanner leitor = new Scanner(System.in);
 
         boolean tesouro = false;
         int movimento, eixoX, eixoY, newEixoY = 0;
         
-        String comando;
         do{  
             System.out.println("Digite as coordenadas da posicao do alimento (max 4)");
             System.out.print("Coordenada em x: ");
@@ -33,8 +32,14 @@ public class DueloRoboInteligente {
         }while(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0);
 
         tela.mostrarPlano();
+        tela.mostrarTransição(2000);
+        tela.ClearConsole();
+
         
         do {
+            System.out.println("-----------Vez do robô normal-------------");
+            tela.mostrarTransição(1500);
+            
             try {
                 tela.gerarPlano();
                 tela.definirAlimento(eixoY, eixoX);
@@ -45,17 +50,24 @@ public class DueloRoboInteligente {
                 movimento = robo1.gerarMovimento();
                 tela.moverRobo(robo1, movimento);
                 robo1.mover(movimento);
-                System.out.println("Vez do robô 1");
             } catch( MovimentoInvalidoException e){
-                System.out.println(e);                    
-            } finally{
                 tela.moverRobo(robo1);
+                
+                tela.ClearConsole();
+                System.out.println(e);                    
+                tela.mostrarTransição(2000);
+            } finally{
                 tela.moverRobo(robo2);
             }
             tela.mostrarPlano();
-            leitor.nextLine();
+            tela.mostrarTransição(2000);
             
-            
+            tela.ClearConsole();
+
+            System.out.println("-----------Vez do robô inteligente-------------");
+            tela.mostrarTransição(1500);
+
+
             try {
                 tela.gerarPlano();
                 tela.definirAlimento(eixoY, eixoX);
@@ -67,19 +79,20 @@ public class DueloRoboInteligente {
                 movimento = robo2.gerarMovimento();
                 tela.moverRobo(robo2, movimento);
                 robo2.mover(movimento);
-                System.out.println("Vez do robô 2");
             } catch( MovimentoInvalidoException e){
-
-                System.out.println(e);
-
+                ((RoboInteligente) robo2).setCometeuUmErro(true);
+                tela.moverRobo(robo2);
+                
+                tela.ClearConsole();
+                System.out.println(e);                    
+                tela.mostrarTransição(2000);
             } finally{
                 tela.moverRobo(robo1);
-                tela.moverRobo(robo2);
             }
 
-           /*  tela.ClearConsole(); */
             tela.mostrarPlano();
-            leitor.nextLine();
+            tela.mostrarTransição(2000);
+            tela.ClearConsole();
 
             tesouro = tela.checarEncontroAlimento(robo1, eixoX, newEixoY);
             tesouro = tela.checarEncontroAlimento(robo2, eixoX, newEixoY);

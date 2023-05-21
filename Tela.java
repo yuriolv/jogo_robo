@@ -39,7 +39,7 @@ public class Tela {
     public void moverRobo(Robo robo, int movimento)  throws MovimentoInvalidoException{
         int eixoX, eixoY;
         eixoX = robo.getEixoX();
-        eixoY= robo.getEixoY();
+        eixoY = robo.getEixoY();
         
         switch (movimento) {
             case 5:
@@ -58,7 +58,7 @@ public class Tela {
                 eixoX--;  
             break;
         }
-        if(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0) 
+        if(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0 || movimento >5 || movimento <0) 
             throw new MovimentoInvalidoException(); 
         
             if(robo instanceof Robo)

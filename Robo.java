@@ -53,28 +53,24 @@ public class Robo {
 
     public int gerarMovimento(){
         Random gerador = new Random();
-        int numeroGerado = gerador.nextInt(3);
+        int numeroGerado = gerador.nextInt(4);
         
         switch (numeroGerado) {
             
-            case 0:
-                numeroGerado=5;
-                System.out.println("in");    
+                case 0:
+                numeroGerado=5;    
                 break;
                 
                 case 1:
-                numeroGerado= 2;                  
-                System.out.println("in");    
+                numeroGerado= 2;                      
                 break;
                 
                 case 2:
-                numeroGerado= 3;                  
-                System.out.println("in");    
+                numeroGerado= 3;                      
                 break;
                 
                 default:
-                numeroGerado= 1;  
-                System.out.println("in");    
+                numeroGerado= 1;      
         }                
         return numeroGerado;
     }
