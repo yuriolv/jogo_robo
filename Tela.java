@@ -19,7 +19,7 @@ public class Tela {
         if(eixoY > 2)
             eixoY = 4 % eixoY;
         else if(eixoY < 2)
-            eixoY = (eixoY % 10) - 6;
+            eixoY = (eixoY % 10) - 6 * -1;
 
         plano[eixoY][eixoX] = "A    ";
 
@@ -40,6 +40,7 @@ public class Tela {
         int eixoX, eixoY;
         eixoX = robo.getEixoX();
         eixoY= robo.getEixoY();
+        
         switch (movimento) {
             case 5:
                 eixoY--;
@@ -102,6 +103,14 @@ public class Tela {
             } 
         }catch(Exception e){
             System.out.println(e);
+        }
+    }
+
+    public void mostrarTransição(int tempo){
+        try {
+            Thread.sleep(tempo);
+        } catch (InterruptedException ex) {
+            // TODO: handle exception
         }
     }
 }

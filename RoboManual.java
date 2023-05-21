@@ -9,6 +9,8 @@ public class RoboManual {
         Robo walle = new Robo("ferrugem");
         Scanner entrada = new Scanner(System.in);
         
+        
+
         boolean tesouro = false;
         int movimento, eixoX, eixoY, newEixoY = 0;
         
