@@ -19,7 +19,7 @@ public class Tela {
         if(eixoY > 2)
             eixoY = 4 % eixoY;
         else if(eixoY < 2)
-            eixoY = (eixoY % 10) - 6 * -1;
+            eixoY = ((eixoY - 10) + 6) * -1;
 
         plano[eixoY][eixoX] = "A    ";
 
@@ -29,6 +29,8 @@ public class Tela {
     public void mostrarPlano(){
         for(int i=0;i < 5; i++){
             for(int j=0; j < 5; j++){
+                if(j == 0)
+                System.out.print("            ");
                 System.out.print(plano[i][j]); 
             }
             System.out.println();
@@ -57,35 +59,41 @@ public class Tela {
             case 1:
                 eixoX--;  
             break;
+
+            default:
+                throw new MovimentoInvalidoException();
         }
-        if(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0 || movimento >5 || movimento <0) 
+        if(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0) 
             throw new MovimentoInvalidoException(); 
         
-            if(robo instanceof Robo)
-            plano[eixoY][eixoX] = "R    ";
+            if(robo instanceof RoboInteligente)
+                plano[eixoY][eixoX] = "RI   ";
             else
-            plano[eixoY][eixoX] = "RI   ";
+                plano[eixoY][eixoX] = "R    ";
             
     }
+
+
     public void moverRobo(Robo robo){
         int eixoX, eixoY;
         eixoX = robo.getEixoX();
         eixoY = robo.getEixoY();
-        if(robo instanceof Robo)
-            plano[eixoY][eixoX] = "R    ";
-        else
+        if(robo instanceof RoboInteligente)
             plano[eixoY][eixoX] = "RI   ";
+        else
+            plano[eixoY][eixoX] = "R    ";
             
     }
 
 
     public boolean checarEncontroAlimento(Robo robo , int eixoX, int eixoY) {
-        if(robo.getEixoX() == eixoX && robo.getEixoY() == eixoY) { //aplicar a mesma lógica do definir alimento
+        if(robo.getEixoX() == eixoX && robo.getEixoY() == eixoY) {
             return true;
         }
 
         return false;
     }
+
 
     public void ClearConsole(){
         try{
@@ -106,11 +114,30 @@ public class Tela {
         }
     }
 
+
     public void mostrarTransição(int tempo){
         try {
             Thread.sleep(tempo);
         } catch (InterruptedException ex) {
             // TODO: handle exception
         }
+    }
+
+    public void mostrarComandos(){
+        System.out.println("-------------------------------------------------");
+        System.out.println("Para mover o Robo utilize os seguintes comandos: ");
+        System.out.println("                   5 ou 'Up'\n");
+        System.out.println("                       ^");
+        System.out.println("                       |");
+        System.out.println("                       |");
+        System.out.println("1 ou 'Left'      <----   ---->        3 ou 'Right'");
+        System.out.println("                       |");
+        System.out.println("                       |");
+        System.out.println("                       v");
+        System.out.println("                   2 ou 'Down'\n");
+        System.out.println("-------------------------------------------------");
+
+        mostrarTransição(5500);
+        ClearConsole();
     }
 }
