@@ -11,9 +11,13 @@ public class MainDoisRobos {
 
 
         Scanner entrada = new Scanner(System.in);
-        boolean alimentoEncontrado = false;
+        boolean alimentoEncontradoWalle = false;
+        boolean alimentoEncontradoEva = false;
         int eixoX, eixoY, newEixoY = 0;
         int movimento;
+        int qtdMovimentoValidoWalle = 0, qtdMovimentoInvalidoWalle = 0;
+        int qtdMovimentoValidoEva = 0, qtdMovimentoInvalidoEva = 0;
+
 
         do {
             System.out.println("Digite as coordenadas da posicao do alimento (max 4)");
@@ -24,7 +28,7 @@ public class MainDoisRobos {
             tela.gerarPlano();
 
             try {
-                //tela.moverRobo(walle);
+                tela.moverRobo(walle);
                 newEixoY = tela.definirAlimento(eixoY, eixoX);
             } catch(PosicaoInvalidaException e) {
                 System.out.println(e);
@@ -32,42 +36,95 @@ public class MainDoisRobos {
             tela.ClearConsole();
         }while(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0);
 
-        tela.ClearConsole();
         tela.mostrarPlano();
+        tela.mostrarTransição(1500);
+        tela.ClearConsole();
 
-        do {
-
+        while(alimentoEncontradoWalle == false && alimentoEncontradoEva == false) {
+            
+            System.out.println("------ Vez de Wall-e ------\n");
+            tela.mostrarPlano();
+            tela.mostrarTransição(1000);
+            tela.ClearConsole();
             tela.gerarPlano();
 
             try {
                 tela.definirAlimento(eixoY, eixoX);
             } catch(PosicaoInvalidaException e) {
                 System.out.println(e);
-                tela.mostrarTransição(2000);
+                //tela.mostrarTransicao(2000);
             }
 
-            //System.out.println("------ Vez de Wall-e se mover ------");
-
+            System.out.println("------ Vez de Wall-e ------\n");
             movimento = walle.gerarMovimento();
             try {
+
                 tela.moverRobo(walle, movimento);
                 walle.mover(movimento);
+                tela.moverRobo(eva);
+                tela.mostrarPlano();
+                tela.mostrarTransição(2000);
+                walle.setQtdMovimentoValido(qtdMovimentoValidoWalle);
+
             } catch(MovimentoInvalidoException e) {
+                tela.moverRobo(walle);
+                tela.moverRobo(eva);
+                tela.mostrarPlano();
                 System.out.printf("ultimo movimento: %d\n", movimento);
                 System.out.println(e);
-            } finally {
-                tela.moverRobo(walle);
+                walle.setQtdMovimentoInvalido(qtdMovimentoInvalidoWalle);
+                tela.mostrarTransição(2000);
+            } 
+            tela.ClearConsole();
+
+            if(alimentoEncontradoWalle == true) 
+                break;
+            System.out.println("------ Vez de Eva ------\n");
+            tela.mostrarPlano();      
+            tela.mostrarTransição(1000);
+            tela.ClearConsole();
+           
+            tela.gerarPlano();
+            try {
+                tela.definirAlimento(eixoY, eixoX);
+            } catch(PosicaoInvalidaException e) {
+                System.out.println(e);
             }
 
-            
-            tela.mostrarTransição(2500);
-
+            System.out.println("------ Vez de Eva ------\n");
+            movimento = eva.gerarMovimento();
+            try {
+                tela.moverRobo(eva, movimento);
+                eva.mover(movimento);
+                tela.moverRobo(walle);
+                tela.mostrarPlano();
+                eva.setQtdMovimentoValido(qtdMovimentoValidoEva);
+            } catch(MovimentoInvalidoException e) {
+                tela.moverRobo(eva);
+                tela.moverRobo(walle);
+                tela.mostrarPlano();
+                System.out.printf("ultimo movimento: %d\n", movimento);
+                System.out.println(e);
+                eva.setQtdMovimentoInvalido(qtdMovimentoInvalidoEva);
+                tela.mostrarTransição(2000);
+                tela.ClearConsole();
+            }
             tela.ClearConsole();
-            tela.mostrarPlano();
-            alimentoEncontrado = tela.checarEncontroAlimento(walle, eixoX, newEixoY);
-            
-        }while(alimentoEncontrado != true);
-        System.out.println(" Walle Encontrou alimento");
+            alimentoEncontradoWalle = tela.checarEncontroAlimento(walle, eixoX, newEixoY);
+            alimentoEncontradoEva = tela.checarEncontroAlimento(eva, eixoX, newEixoY);
+
+        }
+        tela.mostrarPlano();
+        if(alimentoEncontradoWalle == true)
+            System.out.println(" Walle Encontrou alimento");
+        else 
+            System.out.println("Eva Encontrou alimento");
+
+        System.out.printf("Quantidade de movimentos validos de Walle: %d\n", walle.getQtdMovimentoValido());
+        System.out.printf("Quantidade de movimentos invalidos de Walle: %d\n", walle.getQtdMovimentoInvalido());
+        System.out.printf("Quantidade de movimentos validos de Eva: %d\n", eva.getQtdMovimentoValido());
+        System.out.printf("Quantidade de movimentos invalidos de Eva: %d\n", eva.getQtdMovimentoInvalido());
+
         entrada.close();
     }
 
@@ -75,3 +132,4 @@ public class MainDoisRobos {
 
 
 }
+
