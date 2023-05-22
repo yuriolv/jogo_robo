@@ -61,20 +61,20 @@ public class Tela {
         if(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0 || movimento >5 || movimento <0) 
             throw new MovimentoInvalidoException(); 
         
-            if(robo instanceof Robo)
-            plano[eixoY][eixoX] = "R    ";
+            if(robo instanceof RoboInteligente)
+                plano[eixoY][eixoX] = "RI   ";
             else
-            plano[eixoY][eixoX] = "RI   ";
+                plano[eixoY][eixoX] = "R    ";
             
     }
     public void moverRobo(Robo robo){
         int eixoX, eixoY;
         eixoX = robo.getEixoX();
         eixoY = robo.getEixoY();
-        if(robo instanceof Robo)
-            plano[eixoY][eixoX] = "R    ";
-        else
+        if(robo instanceof RoboInteligente)
             plano[eixoY][eixoX] = "RI   ";
+        else
+            plano[eixoY][eixoX] = "R    ";
             
     }
 

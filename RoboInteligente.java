@@ -6,6 +6,7 @@ public class RoboInteligente extends Robo {
 
     public RoboInteligente(String cor){
         super(cor);
+        cometeuUmErro=false;
     }
 
     public void mover(int movimento){   
