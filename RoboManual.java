@@ -80,7 +80,8 @@ public class RoboManual {
 
         System.out.println(ANSI_YELLOW + "Finalmente o wall-e encontrou o alimento!!" + ANSI_RESET);
         entrada.close();
-    
+        
     }
 }
 
+//tabela de codigos de escape ANSI || como decorar terminal alura
