@@ -29,6 +29,8 @@ public class Tela {
     public void mostrarPlano(){
         for(int i=0;i < 5; i++){
             for(int j=0; j < 5; j++){
+                if(j == 0)
+                    System.out.print("            ");
                 System.out.print(plano[i][j]); 
             }
             System.out.println();
@@ -57,12 +59,17 @@ public class Tela {
             case 1:
                 eixoX--;  
             break;
+
+            default:
+                throw new MovimentoInvalidoException();
         }
         if(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0) 
             throw new MovimentoInvalidoException(); 
         
         plano[eixoY][eixoX] = "R    ";
     }
+
+
     public void moverRobo(Robo robo){
         int eixoX, eixoY;
         eixoX = robo.getEixoX();
@@ -78,6 +85,7 @@ public class Tela {
 
         return false;
     }
+
 
     public void ClearConsole(){
         try{
@@ -98,11 +106,30 @@ public class Tela {
         }
     }
 
+
     public void mostrarTransição(int tempo){
         try {
             Thread.sleep(tempo);
         } catch (InterruptedException ex) {
             // TODO: handle exception
         }
+    }
+
+    public void mostrarComandos(){
+        System.out.println("-------------------------------------------------");
+        System.out.println("Para mover o Robo utilize os seguintes comandos: ");
+        System.out.println("                   5 ou 'Up'\n");
+        System.out.println("                       ^");
+        System.out.println("                       |");
+        System.out.println("                       |");
+        System.out.println("1 ou 'Left'      <----   ---->        3 ou 'Right'");
+        System.out.println("                       |");
+        System.out.println("                       |");
+        System.out.println("                       v");
+        System.out.println("                   2 ou 'Down'\n");
+        System.out.println("-------------------------------------------------");
+
+        mostrarTransição(5500);
+        ClearConsole();
     }
 }
