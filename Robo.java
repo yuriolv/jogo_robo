@@ -49,7 +49,7 @@ public class Robo {
 
             default: 
                 return Integer.parseInt(movimento);
-            }
+        }
             
     } 
 

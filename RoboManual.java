@@ -52,20 +52,21 @@ public class RoboManual {
                 tela.mostrarTransição(2000);
             } 
 
+            System.out.print("Digite a direção: ");
+            comando = entrada.next();
+            movimento = walle.transformarComando(comando);
+
              try {
-                System.out.print("Digite a direção: ");
-                comando = entrada.next();
-                movimento = walle.transformarComando(comando);
                 tela.moverRobo(walle, movimento);
 
                 walle.mover(movimento);
             } catch( MovimentoInvalidoException e){
 
-                System.out.println(e);
+                System.out.println(e + " " + movimento);
                 tela.mostrarTransição(2000);
 
             } catch (NumberFormatException e) {
-                System.out.println("Caractere digitado eh invalido");
+                System.out.println("Caractere digitado é invalido");
                 tela.mostrarTransição(2000);
 
             } finally{
