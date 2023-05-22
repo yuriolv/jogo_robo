@@ -19,7 +19,7 @@ public class Tela {
         if(eixoY > 2)
             eixoY = 4 % eixoY;
         else if(eixoY < 2)
-            eixoY = (eixoY % 10) - 6 * -1;
+            eixoY = ((eixoY % 10) - 6) * -1;
 
         plano[eixoY][eixoX] = "A    ";
 
@@ -30,7 +30,7 @@ public class Tela {
         for(int i=0;i < 5; i++){
             for(int j=0; j < 5; j++){
                 if(j == 0)
-                    System.out.print("            ");
+                System.out.print("            ");
                 System.out.print(plano[i][j]); 
             }
             System.out.println();
@@ -63,7 +63,7 @@ public class Tela {
             default:
                 throw new MovimentoInvalidoException();
         }
-        if(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0 || movimento >5 || movimento <0) 
+        if(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0) 
             throw new MovimentoInvalidoException(); 
         
             if(robo instanceof RoboInteligente)
@@ -87,7 +87,7 @@ public class Tela {
 
 
     public boolean checarEncontroAlimento(Robo robo , int eixoX, int eixoY) {
-        if(robo.getEixoX() == eixoX && robo.getEixoY() == eixoY) { //aplicar a mesma lógica do definir alimento
+        if(robo.getEixoX() == eixoX && robo.getEixoY() == eixoY) {
             return true;
         }
 

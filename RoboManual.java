@@ -35,7 +35,6 @@ public class RoboManual {
             tela.ClearConsole();
         }while(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0);
 
-        tela.ClearConsole();
         tela.mostrarTransição(1500);
         tela.mostrarComandos();
         System.out.println("    -----Faça o Robo chegar ao alimento-----\n");
