@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Robo {
 
-    protected int eixoX, eixoY, qtdMovimentoValido, qtdMovimentoInvalido;
+    protected int eixoX, eixoY, qtdMovimentoValido = 0, qtdMovimentoInvalido = 0;
     protected String cor;
     
     public Robo(String cor){
@@ -96,7 +96,7 @@ public class Robo {
     }
 
     public void setQtdMovimentoValido(int qtdMovimentoValido) {
-        this.qtdMovimentoValido = qtdMovimentoValido;
+        this.qtdMovimentoValido += 1;
     }
 
     public int getQtdMovimentoInvalido() {
@@ -104,7 +104,7 @@ public class Robo {
     }
 
     public void setQtdMovimentoInvalido(int qtdMovimentoInvalido) {
-        this.qtdMovimentoInvalido = qtdMovimentoInvalido;
+        this.qtdMovimentoInvalido += 1;
     }
 
     public String getCor() {
