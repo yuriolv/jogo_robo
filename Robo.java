@@ -78,7 +78,9 @@ public class Robo {
     }
 
     public String toString(){
-        return "Robo comum -      "+qtdMovimentoValido+" - "+ qtdMovimentoInvalido+" - "+(qtdMovimentoValido+qtdMovimentoInvalido);
+       
+
+        return "Robo comum: \njogadas validas: "+qtdMovimentoValido+"\njogadas invalidas:"+ qtdMovimentoInvalido+"\ntotal: "+(qtdMovimentoValido+qtdMovimentoInvalido);
     }
 
     public int getEixoX() {

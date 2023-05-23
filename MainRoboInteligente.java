@@ -6,8 +6,8 @@ import exception.MovimentoInvalidoException;
 public class MainRoboInteligente {
     public static void main(String args[]) {
         Tela tela = new Tela();
-        Robo walle = new Robo("ferrugem");
-        Robo eva = new RoboInteligente("Branco");
+        Robo walle = new Robo("Azul");
+        Robo eva = new RoboInteligente("Vermelho");
         Scanner leitor = new Scanner(System.in);
 
         boolean tesouroWalle = false;
@@ -26,6 +26,7 @@ public class MainRoboInteligente {
 
             try {
                 tela.moverRobo(walle);
+                tela.moverRobo(eva);
                 newEixoY = tela.definirAlimento(eixoY, eixoX); 
             } catch (PosicaoInvalidaException e) {
                 System.out.println(e);
@@ -40,7 +41,7 @@ public class MainRoboInteligente {
         
         do {
             if(tesouroWalle==false){
-                System.out.println("    -----------Vez do robô normal-------------\n");
+                System.out.println("    -----------Vez do robô comum-------------\n");
                 tela.mostrarPlano();
                 tela.mostrarTransição(1000);
                 tela.ClearConsole();
@@ -52,10 +53,10 @@ public class MainRoboInteligente {
                 } catch (PosicaoInvalidaException e) {
                     System.out.println(e);
                 }
-                System.out.println("    -----------Vez do robô normal-------------\n");
+                System.out.println("    -----------Vez do robô comum-------------\n");
+                movimento = walle.gerarMovimento();
                 try {
 
-                    movimento = walle.gerarMovimento();
                     tela.moverRobo(walle, movimento);
                     walle.mover(movimento);
 
@@ -69,7 +70,7 @@ public class MainRoboInteligente {
 
                     walle.setQtdMovimentoInvalido();
 
-                    System.out.println(e);                    
+                    System.out.println(e+" "+movimento);                    
                     tela.mostrarTransição(2000);
   
                 } 
@@ -92,9 +93,9 @@ public class MainRoboInteligente {
                 } 
 
                 System.out.println("    -----------Vez do robô inteligente-------------\n");
+                movimento = eva.gerarMovimento();
                 try {
                 
-                    movimento = eva.gerarMovimento();
                     tela.moverRobo(eva, movimento);
                     eva.mover(movimento);
                     
@@ -109,7 +110,7 @@ public class MainRoboInteligente {
 
                     eva.setQtdMovimentoInvalido();
 
-                    System.out.println(e); 
+                    System.out.print(e+" "+movimento); 
                     tela.mostrarTransição(2000);
                 } 
                 tela.ClearConsole();

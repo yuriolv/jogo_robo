@@ -65,7 +65,7 @@ public class RoboInteligente extends Robo {
         }
     }
     public String toString(){
-        return "Robo inteligente -      "+qtdMovimentoValido+" - "+ qtdMovimentoInvalido+" - "+(qtdMovimentoValido+qtdMovimentoInvalido);
+        return "Robo inteligente: \njogadas validas: "+qtdMovimentoValido+"\njogadas invalidas:"+ qtdMovimentoInvalido+"\ntotal: "+(qtdMovimentoValido+qtdMovimentoInvalido);
     }
 
     public boolean isCometeuUmErro() {
