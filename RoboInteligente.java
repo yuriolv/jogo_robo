@@ -28,7 +28,7 @@ public class RoboInteligente extends Robo {
                 eixoX--;
             }
     }
-public int gerarMovimento(){
+    public int gerarMovimento(){
         Random gerador = new Random();
         if(cometeuUmErro==false){
             int numeroGerado = gerador.nextInt(4);
@@ -62,9 +62,11 @@ public int gerarMovimento(){
                 default:
                     return 3;
             }
+        }
     }
-}
-
+    public String toString(){
+        return "Robo inteligente -      "+qtdMovimentoValido+" - "+ qtdMovimentoInvalido+" - "+(qtdMovimentoValido+qtdMovimentoInvalido);
+    }
 
     public boolean isCometeuUmErro() {
         return cometeuUmErro;

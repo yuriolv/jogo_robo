@@ -42,6 +42,10 @@ public class Tela {
         int eixoX, eixoY;
         eixoX = robo.getEixoX();
         eixoY = robo.getEixoY();
+
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_BLUE = "\u001B[34m";
+        String ANSI_RED = "\u001B[31m";
         
         switch (movimento) {
             case 5:
@@ -67,21 +71,27 @@ public class Tela {
             throw new MovimentoInvalidoException(); 
         
             if(robo instanceof RoboInteligente)
-                plano[eixoY][eixoX] = "RI   ";
+                plano[eixoY][eixoX] = ANSI_RED+"R   "+ANSI_RESET;
             else
-                plano[eixoY][eixoX] = "R    ";
+                plano[eixoY][eixoX] = ANSI_BLUE+"R    "+ANSI_RESET;
             
     }
 
 
     public void moverRobo(Robo robo){
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_BLUE = "\u001B[34m";
+        String ANSI_RED = "\u001B[31m";
+        String ANSI_PURPLE = "\u001B[35m";
+
         int eixoX, eixoY;
         eixoX = robo.getEixoX();
         eixoY = robo.getEixoY();
         if(robo instanceof RoboInteligente)
-            plano[eixoY][eixoX] = "RI   ";
+            plano[eixoY][eixoX] = ANSI_RED+"R   "+ANSI_RESET;
         else
-            plano[eixoY][eixoX] = "R    ";
+            plano[eixoY][eixoX] = ANSI_BLUE+"R    "+ANSI_RESET;
+        
             
     }
 
@@ -94,33 +104,14 @@ public class Tela {
         return false;
     }
 
-
-    public void ClearConsole(){
-        try{
-            String operatingSystem = System.getProperty("os.name"); //Check the current operating system
-              
-            if(operatingSystem.contains("Windows")){
-                ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "cls");
-                Process startProcess = pb.inheritIO().start();
-                startProcess.waitFor();
-            } else {
-                ProcessBuilder pb = new ProcessBuilder("clear");
-                Process startProcess = pb.inheritIO().start();
-
-                startProcess.waitFor();
-            } 
-        }catch(Exception e){
-            System.out.println(e);
-        }
-    }
+    public void mostrarResultado(Robo walle, Robo eva){
+        System.out.println("--------------------------------------------------");
+        System.out.println("Robo - Jogadas validas - jogadas invalidas - total");
+        System.out.println(walle.toString());
+        System.out.println(eva.toString());
+        System.out.println("--------------------------------------------------");
 
 
-    public void mostrarTransição(int tempo){
-        try {
-            Thread.sleep(tempo);
-        } catch (InterruptedException ex) {
-            // TODO: handle exception
-        }
     }
 
     public void mostrarComandos(){
@@ -139,5 +130,30 @@ public class Tela {
 
         mostrarTransição(5500);
         ClearConsole();
+    }
+    public void mostrarTransição(int tempo){
+        try {
+            Thread.sleep(tempo);
+        } catch (InterruptedException ex) {
+            // TODO: handle exception
+        }
+    }
+    public void ClearConsole(){
+        try{
+            String operatingSystem = System.getProperty("os.name"); //Check the current operating system
+              
+            if(operatingSystem.contains("Windows")){
+                ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "cls");
+                Process startProcess = pb.inheritIO().start();
+                startProcess.waitFor();
+            } else {
+                ProcessBuilder pb = new ProcessBuilder("clear");
+                Process startProcess = pb.inheritIO().start();
+    
+                startProcess.waitFor();
+            } 
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
 }

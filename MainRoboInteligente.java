@@ -48,6 +48,7 @@ public class MainRoboInteligente {
                 try {
                     tela.gerarPlano();
                     tela.definirAlimento(eixoY, eixoX);
+                    tela.moverRobo(eva);
                 } catch (PosicaoInvalidaException e) {
                     System.out.println(e);
                 }
@@ -57,32 +58,35 @@ public class MainRoboInteligente {
                     movimento = walle.gerarMovimento();
                     tela.moverRobo(walle, movimento);
                     walle.mover(movimento);
-                    tela.moverRobo(eva);
+
+                    walle.setQtdMovimentoValido();
+
                     tela.mostrarPlano();
                     tela.mostrarTransição(2000);
-
                 } catch( MovimentoInvalidoException e){
                     tela.moverRobo(walle);
-                    
-                    tela.moverRobo(eva);
                     tela.mostrarPlano();
+
+                    walle.setQtdMovimentoInvalido();
+
                     System.out.println(e);                    
                     tela.mostrarTransição(2000);
-                    tela.ClearConsole();
+  
                 } 
+                tela.ClearConsole();
             }
-            tela.ClearConsole();
 
-            System.out.println("    -----------Vez do robô inteligente-------------\n");
-            tela.mostrarPlano();
-            tela.mostrarTransição(1000);
-            tela.ClearConsole();
-
+            
             if(tesouroEva == false){
-
+                System.out.println("    -----------Vez do robô inteligente-------------\n");
+                tela.mostrarPlano();
+                tela.mostrarTransição(1000);
+                tela.ClearConsole();
+                
                 try {
                     tela.gerarPlano();
                     tela.definirAlimento(eixoY, eixoX);
+                    tela.moverRobo(walle);
                 } catch (PosicaoInvalidaException e) {
                     System.out.println(e);
                 } 
@@ -93,24 +97,23 @@ public class MainRoboInteligente {
                     movimento = eva.gerarMovimento();
                     tela.moverRobo(eva, movimento);
                     eva.mover(movimento);
-                    tela.moverRobo(walle);
-                    tela.mostrarPlano();
+                    
+                    eva.setQtdMovimentoValido();
 
+                    tela.mostrarPlano();
                     tela.mostrarTransição(2000);
                 } catch( MovimentoInvalidoException e){
                     ((RoboInteligente) eva).setCometeuUmErro(true);
                     tela.moverRobo(eva);
-                    
-                    tela.moverRobo(walle);
                     tela.mostrarPlano();
+
+                    eva.setQtdMovimentoInvalido();
 
                     System.out.println(e); 
                     tela.mostrarTransição(2000);
-                    tela.ClearConsole();
-
                 } 
+                tela.ClearConsole();
             }
-            tela.ClearConsole();
 
             
             tesouroWalle = tela.checarEncontroAlimento(walle, eixoX, newEixoY);
@@ -121,9 +124,13 @@ public class MainRoboInteligente {
             }
 
         } while (ambosAcharam != true);
-        leitor.close();
         
         tela.mostrarPlano();
+        tela.mostrarTransição(2000);
+        tela.ClearConsole();
+
+        tela.mostrarResultado(walle, eva);
+        leitor.close();
     }
     
 }

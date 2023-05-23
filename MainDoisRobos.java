@@ -64,7 +64,7 @@ public class MainDoisRobos {
                 tela.moverRobo(eva);
                 tela.mostrarPlano();
                 tela.mostrarTransição(2000);
-                walle.setQtdMovimentoValido(qtdMovimentoValidoWalle);
+                walle.setQtdMovimentoValido();
 
             } catch(MovimentoInvalidoException e) {
                 tela.moverRobo(walle);
@@ -72,7 +72,7 @@ public class MainDoisRobos {
                 tela.mostrarPlano();
                 System.out.printf("ultimo movimento: %d\n", movimento);
                 System.out.println(e);
-                walle.setQtdMovimentoInvalido(qtdMovimentoInvalidoWalle);
+                walle.setQtdMovimentoInvalido();
                 tela.mostrarTransição(2000);
             } 
             tela.ClearConsole();
@@ -97,15 +97,18 @@ public class MainDoisRobos {
                 tela.moverRobo(eva, movimento);
                 eva.mover(movimento);
                 tela.moverRobo(walle);
+
                 tela.mostrarPlano();
-                eva.setQtdMovimentoValido(qtdMovimentoValidoEva);
+                eva.setQtdMovimentoValido();
             } catch(MovimentoInvalidoException e) {
                 tela.moverRobo(eva);
                 tela.moverRobo(walle);
                 tela.mostrarPlano();
+
                 System.out.printf("ultimo movimento: %d\n", movimento);
                 System.out.println(e);
-                eva.setQtdMovimentoInvalido(qtdMovimentoInvalidoEva);
+
+                eva.setQtdMovimentoInvalido();
                 tela.mostrarTransição(2000);
                 tela.ClearConsole();
             }
