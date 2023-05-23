@@ -8,6 +8,9 @@ public class MainDoisRobos {
         Tela tela = new Tela();
         Robo walle = new Robo("Azul");
         Robo eva = new Robo("Vermelho");
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_BLUE = "\u001B[34m";
+        String ANSI_RED = "\u001B[31m";
 
 
         Scanner entrada = new Scanner(System.in);
@@ -37,9 +40,9 @@ public class MainDoisRobos {
         tela.mostrarTransição(1500);
         tela.ClearConsole();
 
-        while(alimentoEncontradoWalle == false || alimentoEncontradoEva == false) {
+        while(alimentoEncontradoWalle == false && alimentoEncontradoEva == false) {
             
-            System.out.println("    ------ Vez de Wall-e ------\n");
+            System.out.println("\t  ------ Vez de Wall-e ------\n");
             tela.mostrarPlano();
             tela.mostrarTransição(1000);
             tela.ClearConsole();
@@ -53,7 +56,7 @@ public class MainDoisRobos {
                 //tela.mostrarTransicao(2000);
             }
 
-            System.out.println("    ------ Vez de Wall-e ------\n");
+            System.out.println("\t  ------ Vez de Wall-e ------\n");
             movimento = walle.gerarMovimento();
             try {
                 
@@ -79,7 +82,7 @@ public class MainDoisRobos {
                 break;
 
 
-            System.out.println("    ------ Vez de Eva ------\n");
+            System.out.println("\t  ------ Vez de Eva ------\n");
             tela.mostrarPlano();      
             tela.mostrarTransição(1000);
             tela.ClearConsole();
@@ -92,7 +95,7 @@ public class MainDoisRobos {
                 System.out.println(e);
             }
 
-            System.out.println("    ------ Vez de Eva ------\n");
+            System.out.println("\t  ------ Vez de Eva ------\n");
             try {
                 movimento = eva.gerarMovimento();
                 tela.moverRobo(eva, movimento);
@@ -120,9 +123,9 @@ public class MainDoisRobos {
         }
         tela.mostrarPlano();
         if(alimentoEncontradoWalle == true)
-            System.out.println(" Walle Encontrou alimento");
+            System.out.println(ANSI_BLUE+"Walle Encontrou alimento"+ANSI_RESET);
         else 
-            System.out.println("Eva Encontrou alimento");
+            System.out.println(ANSI_RED+"Eva Encontrou alimento"+ANSI_RESET);
 
         System.out.printf("Quantidade de movimentos validos de Walle: %d\n", walle.getQtdMovimentoValido());
         System.out.printf("Quantidade de movimentos invalidos de Walle: %d\n", walle.getQtdMovimentoInvalido());
