@@ -6,8 +6,8 @@ import exception.MovimentoInvalidoException;
 public class MainRoboInteligente {
     public static void main(String args[]) {
         Tela tela = new Tela();
-        Robo walle = new Robo("ferrugem");
-        Robo eva = new RoboInteligente("Branco");
+        Robo walle = new Robo("Azul");
+        Robo eva = new RoboInteligente("Vermelho");
         Scanner leitor = new Scanner(System.in);
 
         boolean tesouroWalle = false;

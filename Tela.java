@@ -70,10 +70,12 @@ public class Tela {
         if(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0) 
             throw new MovimentoInvalidoException(); 
         
-            if(robo instanceof RoboInteligente)
-                plano[eixoY][eixoX] = ANSI_RED+"R   "+ANSI_RESET;
-            else
+            if((robo.getCor()).equals("Vermelho"))
+                plano[eixoY][eixoX] = ANSI_RED+"R    "+ANSI_RESET;
+            else {
                 plano[eixoY][eixoX] = ANSI_BLUE+"R    "+ANSI_RESET;
+
+            }
             
     }
 
@@ -87,10 +89,11 @@ public class Tela {
         int eixoX, eixoY;
         eixoX = robo.getEixoX();
         eixoY = robo.getEixoY();
-        if(robo instanceof RoboInteligente)
-            plano[eixoY][eixoX] = ANSI_RED+"R   "+ANSI_RESET;
-        else
+        if((robo.getCor()).equals("Vermelho"))
+            plano[eixoY][eixoX] = ANSI_RED+"R    "+ANSI_RESET;
+        else{
             plano[eixoY][eixoX] = ANSI_BLUE+"R    "+ANSI_RESET;
+        }
         
             
     }
