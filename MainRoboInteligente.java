@@ -26,6 +26,7 @@ public class MainRoboInteligente {
 
             try {
                 tela.moverRobo(walle);
+                tela.moverRobo(eva);
                 newEixoY = tela.definirAlimento(eixoY, eixoX); 
             } catch (PosicaoInvalidaException e) {
                 System.out.println(e);
@@ -53,9 +54,9 @@ public class MainRoboInteligente {
                     System.out.println(e);
                 }
                 System.out.println("    -----------Vez do robô normal-------------\n");
+                movimento = walle.gerarMovimento();
                 try {
 
-                    movimento = walle.gerarMovimento();
                     tela.moverRobo(walle, movimento);
                     walle.mover(movimento);
 
@@ -69,7 +70,7 @@ public class MainRoboInteligente {
 
                     walle.setQtdMovimentoInvalido();
 
-                    System.out.println(e);                    
+                    System.out.println(e+" "+movimento);                    
                     tela.mostrarTransição(2000);
   
                 } 
@@ -92,9 +93,9 @@ public class MainRoboInteligente {
                 } 
 
                 System.out.println("    -----------Vez do robô inteligente-------------\n");
+                movimento = eva.gerarMovimento();
                 try {
                 
-                    movimento = eva.gerarMovimento();
                     tela.moverRobo(eva, movimento);
                     eva.mover(movimento);
                     
@@ -109,7 +110,7 @@ public class MainRoboInteligente {
 
                     eva.setQtdMovimentoInvalido();
 
-                    System.out.println(e); 
+                    System.out.print(e+" "+movimento); 
                     tela.mostrarTransição(2000);
                 } 
                 tela.ClearConsole();

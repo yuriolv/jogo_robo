@@ -46,6 +46,7 @@ public class Tela {
         String ANSI_RESET = "\u001B[0m";
         String ANSI_BLUE = "\u001B[34m";
         String ANSI_RED = "\u001B[31m";
+        String ANSI_PURPLE = "\u001B[35m";
         
         switch (movimento) {
             case 5:
@@ -69,13 +70,14 @@ public class Tela {
         }
         if(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0) 
             throw new MovimentoInvalidoException(); 
-        
-            if((robo.getCor()).equals("Vermelho"))
-                plano[eixoY][eixoX] = ANSI_RED+"R    "+ANSI_RESET;
-            else {
-                plano[eixoY][eixoX] = ANSI_BLUE+"R    "+ANSI_RESET;
 
-            }
+        if(robosJuntos(robo, eixoX, eixoY))
+            plano[eixoY][eixoX] = ANSI_PURPLE+"R    "+ANSI_RESET;
+
+        else if((robo.getCor()).equals("Vermelho"))
+            plano[eixoY][eixoX] = ANSI_RED+"R    "+ANSI_RESET;
+        else 
+            plano[eixoY][eixoX] = ANSI_BLUE+"R    "+ANSI_RESET;
             
     }
 
@@ -89,15 +91,33 @@ public class Tela {
         int eixoX, eixoY;
         eixoX = robo.getEixoX();
         eixoY = robo.getEixoY();
-        if((robo.getCor()).equals("Vermelho"))
+        
+        if(robosJuntos(robo, eixoX, eixoY))
+            plano[eixoY][eixoX] = ANSI_PURPLE+"R    "+ANSI_RESET;
+         
+        else if(robo.getCor().equals("Vermelho"))
             plano[eixoY][eixoX] = ANSI_RED+"R    "+ANSI_RESET;
-        else{
+            
+        else 
             plano[eixoY][eixoX] = ANSI_BLUE+"R    "+ANSI_RESET;
-        }
+        
         
             
     }
+    public boolean robosJuntos(Robo robo, int eixoX, int eixoY) {
+        String ANSI_BLUE = "\u001B[34m";
+        String ANSI_RED = "\u001B[31m";
+        String ANSI_RESET = "\u001B[0m";     
 
+        if(robo.getCor().equals("Vermelho") && plano[eixoY][eixoX].equals(ANSI_BLUE+"R    "+ANSI_RESET))
+            return true;
+        
+        else if(robo.getCor().equals("Azul") && plano[eixoY][eixoX].equals(ANSI_RED+"R    "+ANSI_RESET))
+            return true;
+
+        else
+            return false;
+    }
 
     public boolean checarEncontroAlimento(Robo robo , int eixoX, int eixoY) {
         if(robo.getEixoX() == eixoX && robo.getEixoY() == eixoY) {
