@@ -15,8 +15,6 @@ public class MainDoisRobos {
         boolean alimentoEncontradoEva = false;
         int eixoX, eixoY, newEixoY = 0;
         int movimento;
-        int qtdMovimentoValidoWalle = 0, qtdMovimentoInvalidoWalle = 0;
-        int qtdMovimentoValidoEva = 0, qtdMovimentoInvalidoEva = 0;
 
 
         do {
