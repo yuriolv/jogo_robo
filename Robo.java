@@ -2,12 +2,14 @@ import java.util.*;
 
 public class Robo {
 
-    protected int eixoX, eixoY, qtdMovimentoValido = 0, qtdMovimentoInvalido = 0;
+    protected int eixoX, eixoY, qtdMovimentoValido, qtdMovimentoInvalido;
     protected String cor;
     
     public Robo(String cor){
         eixoX = 0;
         eixoY = 4;
+        qtdMovimentoInvalido = 0;
+        qtdMovimentoValido = 0;
         this.cor = cor;
     }
     
@@ -47,7 +49,7 @@ public class Robo {
 
             default: 
                 return Integer.parseInt(movimento);
-            }
+        }
             
     } 
 
@@ -75,6 +77,10 @@ public class Robo {
         return numeroGerado;
     }
 
+    public String toString(){
+        return "Robo comum -      "+qtdMovimentoValido+" - "+ qtdMovimentoInvalido+" - "+(qtdMovimentoValido+qtdMovimentoInvalido);
+    }
+
     public int getEixoX() {
         return eixoX;
     }
@@ -95,15 +101,15 @@ public class Robo {
         return qtdMovimentoValido;
     }
 
-    public void setQtdMovimentoValido(int qtdMovimentoValido) {
-        this.qtdMovimentoValido += 1;
+    public void setQtdMovimentoValido() {
+        qtdMovimentoValido += 1;
     }
 
     public int getQtdMovimentoInvalido() {
         return qtdMovimentoInvalido;
     }
 
-    public void setQtdMovimentoInvalido(int qtdMovimentoInvalido) {
+    public void setQtdMovimentoInvalido() {
         this.qtdMovimentoInvalido += 1;
     }
 

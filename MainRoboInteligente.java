@@ -6,8 +6,8 @@ import exception.MovimentoInvalidoException;
 public class MainRoboInteligente {
     public static void main(String args[]) {
         Tela tela = new Tela();
-        Robo walle = new Robo("ferrugem");
-        Robo eva = new RoboInteligente("Branco");
+        Robo walle = new Robo("Azul");
+        Robo eva = new RoboInteligente("Vermelho");
         Scanner leitor = new Scanner(System.in);
 
         boolean tesouroWalle = false;
@@ -26,6 +26,7 @@ public class MainRoboInteligente {
 
             try {
                 tela.moverRobo(walle);
+                tela.moverRobo(eva);
                 newEixoY = tela.definirAlimento(eixoY, eixoX); 
             } catch (PosicaoInvalidaException e) {
                 System.out.println(e);
@@ -48,69 +49,72 @@ public class MainRoboInteligente {
                 try {
                     tela.gerarPlano();
                     tela.definirAlimento(eixoY, eixoX);
+                    tela.moverRobo(eva);
                 } catch (PosicaoInvalidaException e) {
                     System.out.println(e);
                 }
                 System.out.println("    -----------Vez do robô normal-------------\n");
+                movimento = walle.gerarMovimento();
                 try {
 
-                    movimento = walle.gerarMovimento();
                     tela.moverRobo(walle, movimento);
                     walle.mover(movimento);
-                    tela.moverRobo(eva);
+
+                    walle.setQtdMovimentoValido();
+
                     tela.mostrarPlano();
                     tela.mostrarTransição(2000);
-
                 } catch( MovimentoInvalidoException e){
                     tela.moverRobo(walle);
-                    
-                    tela.moverRobo(eva);
                     tela.mostrarPlano();
-                    System.out.println(e);                    
+
+                    walle.setQtdMovimentoInvalido();
+
+                    System.out.println(e+" "+movimento);                    
                     tela.mostrarTransição(2000);
-                    tela.ClearConsole();
+  
                 } 
+                tela.ClearConsole();
             }
-            tela.ClearConsole();
 
-            System.out.println("    -----------Vez do robô inteligente-------------\n");
-            tela.mostrarPlano();
-            tela.mostrarTransição(1000);
-            tela.ClearConsole();
-
+            
             if(tesouroEva == false){
-
+                System.out.println("    -----------Vez do robô inteligente-------------\n");
+                tela.mostrarPlano();
+                tela.mostrarTransição(1000);
+                tela.ClearConsole();
+                
                 try {
                     tela.gerarPlano();
                     tela.definirAlimento(eixoY, eixoX);
+                    tela.moverRobo(walle);
                 } catch (PosicaoInvalidaException e) {
                     System.out.println(e);
                 } 
 
                 System.out.println("    -----------Vez do robô inteligente-------------\n");
+                movimento = eva.gerarMovimento();
                 try {
                 
-                    movimento = eva.gerarMovimento();
                     tela.moverRobo(eva, movimento);
                     eva.mover(movimento);
-                    tela.moverRobo(walle);
-                    tela.mostrarPlano();
+                    
+                    eva.setQtdMovimentoValido();
 
+                    tela.mostrarPlano();
                     tela.mostrarTransição(2000);
                 } catch( MovimentoInvalidoException e){
                     ((RoboInteligente) eva).setCometeuUmErro(true);
                     tela.moverRobo(eva);
-                    
-                    tela.moverRobo(walle);
                     tela.mostrarPlano();
 
-                    System.out.println(e); 
-                    tela.mostrarTransição(2000);
-                    tela.ClearConsole();
+                    eva.setQtdMovimentoInvalido();
 
+                    System.out.print(e+" "+movimento); 
+                    tela.mostrarTransição(2000);
                 } 
+                tela.ClearConsole();
             }
-            tela.ClearConsole();
 
             
             tesouroWalle = tela.checarEncontroAlimento(walle, eixoX, newEixoY);
@@ -121,9 +125,13 @@ public class MainRoboInteligente {
             }
 
         } while (ambosAcharam != true);
-        leitor.close();
         
         tela.mostrarPlano();
+        tela.mostrarTransição(2000);
+        tela.ClearConsole();
+
+        tela.mostrarResultado(walle, eva);
+        leitor.close();
     }
     
 }

@@ -6,8 +6,8 @@ import exception.PosicaoInvalidaException;
 public class MainDoisRobos {
     public static void main(String[] args) {
         Tela tela = new Tela();
-        Robo walle = new Robo("azul");
-        Robo eva = new Robo("Branco");
+        Robo walle = new Robo("Azul");
+        Robo eva = new Robo("Vermelho");
 
 
         Scanner entrada = new Scanner(System.in);
@@ -15,9 +15,6 @@ public class MainDoisRobos {
         boolean alimentoEncontradoEva = false;
         int eixoX, eixoY, newEixoY = 0;
         int movimento;
-        int qtdMovimentoValidoWalle = 0, qtdMovimentoInvalidoWalle = 0;
-        int qtdMovimentoValidoEva = 0, qtdMovimentoInvalidoEva = 0;
-
 
         do {
             System.out.println("Digite as coordenadas da posicao do alimento (max 4)");
@@ -40,46 +37,49 @@ public class MainDoisRobos {
         tela.mostrarTransição(1500);
         tela.ClearConsole();
 
-        while(alimentoEncontradoWalle == false && alimentoEncontradoEva == false) {
+        while(alimentoEncontradoWalle == false || alimentoEncontradoEva == false) {
             
-            System.out.println("------ Vez de Wall-e ------\n");
+            System.out.println("    ------ Vez de Wall-e ------\n");
             tela.mostrarPlano();
             tela.mostrarTransição(1000);
             tela.ClearConsole();
             tela.gerarPlano();
 
             try {
+                tela.moverRobo(eva);
                 tela.definirAlimento(eixoY, eixoX);
             } catch(PosicaoInvalidaException e) {
                 System.out.println(e);
                 //tela.mostrarTransicao(2000);
             }
 
-            System.out.println("------ Vez de Wall-e ------\n");
+            System.out.println("    ------ Vez de Wall-e ------\n");
             movimento = walle.gerarMovimento();
             try {
-
+                
                 tela.moverRobo(walle, movimento);
                 walle.mover(movimento);
-                tela.moverRobo(eva);
+
                 tela.mostrarPlano();
                 tela.mostrarTransição(2000);
-                walle.setQtdMovimentoValido(qtdMovimentoValidoWalle);
+                walle.setQtdMovimentoValido();
 
             } catch(MovimentoInvalidoException e) {
                 tela.moverRobo(walle);
-                tela.moverRobo(eva);
                 tela.mostrarPlano();
+
                 System.out.printf("ultimo movimento: %d\n", movimento);
                 System.out.println(e);
-                walle.setQtdMovimentoInvalido(qtdMovimentoInvalidoWalle);
+                walle.setQtdMovimentoInvalido();
                 tela.mostrarTransição(2000);
             } 
             tela.ClearConsole();
             alimentoEncontradoWalle = tela.checarEncontroAlimento(walle, eixoX, newEixoY);
             if(alimentoEncontradoWalle == true) 
                 break;
-            System.out.println("------ Vez de Eva ------\n");
+
+
+            System.out.println("    ------ Vez de Eva ------\n");
             tela.mostrarPlano();      
             tela.mostrarTransição(1000);
             tela.ClearConsole();
@@ -87,25 +87,29 @@ public class MainDoisRobos {
             tela.gerarPlano();
             try {
                 tela.definirAlimento(eixoY, eixoX);
+                tela.moverRobo(walle);
             } catch(PosicaoInvalidaException e) {
                 System.out.println(e);
             }
 
-            System.out.println("------ Vez de Eva ------\n");
-            movimento = eva.gerarMovimento();
+            System.out.println("    ------ Vez de Eva ------\n");
             try {
+                movimento = eva.gerarMovimento();
                 tela.moverRobo(eva, movimento);
                 eva.mover(movimento);
-                tela.moverRobo(walle);
+
                 tela.mostrarPlano();
-                eva.setQtdMovimentoValido(qtdMovimentoValidoEva);
+                tela.mostrarTransição(2000);
+                eva.setQtdMovimentoValido();
             } catch(MovimentoInvalidoException e) {
+
                 tela.moverRobo(eva);
-                tela.moverRobo(walle);
                 tela.mostrarPlano();
+
                 System.out.printf("ultimo movimento: %d\n", movimento);
                 System.out.println(e);
-                eva.setQtdMovimentoInvalido(qtdMovimentoInvalidoEva);
+
+                eva.setQtdMovimentoInvalido();
                 tela.mostrarTransição(2000);
                 tela.ClearConsole();
             }
