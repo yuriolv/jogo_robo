@@ -76,7 +76,7 @@ public class MainDoisRobos {
                 tela.mostrarTransição(2000);
             } 
             tela.ClearConsole();
-
+            alimentoEncontradoWalle = tela.checarEncontroAlimento(walle, eixoX, newEixoY);
             if(alimentoEncontradoWalle == true) 
                 break;
             System.out.println("------ Vez de Eva ------\n");
