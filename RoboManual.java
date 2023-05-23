@@ -6,12 +6,12 @@ import exception.PosicaoInvalidaException;
 public class RoboManual {
     public static void main(String[] args) {
         Tela tela = new Tela();
-        Robo walle = new Robo("ferrugem");
+        Robo walle = new Robo("Azul");
         Scanner entrada = new Scanner(System.in);
         
         String ANSI_RESET = "\u001B[0m";
-        String ANSI_YELLOW = "\u001B[33m";
-
+        String ANSI_BLUE = "\u001B[34m";
+        
         boolean tesouro = false;
         int movimento, eixoX, eixoY, newEixoY = 0;
         
@@ -79,10 +79,8 @@ public class RoboManual {
             
         } while (tesouro != true);
 
-        System.out.println(ANSI_YELLOW + "Finalmente o wall-e encontrou o alimento!!" + ANSI_RESET);
+        System.out.println("Finalmente " + ANSI_BLUE + "wall-e" + ANSI_RESET +" encontrou o alimento!!");
         entrada.close();
         
     }
 }
-
-//tabela de codigos de escape ANSI || como decorar terminal alura

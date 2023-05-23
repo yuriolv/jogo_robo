@@ -25,10 +25,12 @@ public class MainDoisRobos {
             eixoX = entrada.nextInt();
             System.out.print("Coordenada em y: ");
             eixoY = entrada.nextInt();
+
             tela.gerarPlano();
 
             try {
                 tela.moverRobo(walle);
+                tela.moverRobo(eva);
                 newEixoY = tela.definirAlimento(eixoY, eixoX);
             } catch(PosicaoInvalidaException e) {
                 System.out.println(e);
