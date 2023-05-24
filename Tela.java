@@ -53,7 +53,6 @@ public class Tela {
         String ANSI_BLUE = "\u001B[34m";
         String ANSI_RED = "\u001B[31m";
         String ANSI_PURPLE = "\u001B[35m";
-        String ANSI_GREEN = "\u001B[033";
         
         switch (movimento) {
             case 5:
