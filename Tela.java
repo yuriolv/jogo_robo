@@ -146,15 +146,15 @@ public class Tela {
     public void mostrarComandos(){
         System.out.println("-------------------------------------------------");
         System.out.println("Para mover o Robo utilize os seguintes comandos: ");
-        System.out.println("                   5 ou 'Up'\n");
+        System.out.println("                   5 ou 'up'\n");
         System.out.println("                       ^");
         System.out.println("                       |");
         System.out.println("                       |");
-        System.out.println("1 ou 'Left'      <----   ---->        3 ou 'Right'");
+        System.out.println("1 ou 'left'      <----   ---->        3 ou 'right'");
         System.out.println("                       |");
         System.out.println("                       |");
         System.out.println("                       v");
-        System.out.println("                   2 ou 'Down'\n");
+        System.out.println("                   2 ou 'down'\n");
         System.out.println("-------------------------------------------------");
 
         mostrarTransição(5500);

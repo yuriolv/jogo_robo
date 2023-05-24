@@ -36,15 +36,15 @@ public class Robo {
     public int transformarComando(String movimento){
 
         switch (movimento) {
-            case "Up":
+            case "up":
                 return 5;    
 
-            case "Down":
+            case "down":
                 return 2;                  
 
-            case "Right":
+            case "right":
                 return 3;   
-            case "Left":
+            case "left":
                 return 1;
 
             default: 
