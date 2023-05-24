@@ -65,7 +65,9 @@ public class MainRoboInteligente {
 
                     tela.mostrarPlano();
                     tela.mostrarTransição(2000);
+
                 } catch( MovimentoInvalidoException e){
+                    
                     tela.moverRobo(walle);
                     tela.mostrarPlano();
 

@@ -13,6 +13,12 @@ public class Tela {
     }
 
     public int definirAlimento(int eixoY, int eixoX) throws PosicaoInvalidaException{
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_BLACK = "\u001B[030m";
+        String ANSI_GREEN = "\u001B[042m";
+        
+
+
         if(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0) 
             throw new PosicaoInvalidaException();
 
@@ -21,7 +27,7 @@ public class Tela {
         else if(eixoY < 2)
             eixoY = ((eixoY - 10) + 6) * -1;
 
-        plano[eixoY][eixoX] = "A    ";
+        plano[eixoY][eixoX] = ANSI_GREEN + ANSI_BLACK + "%" + ANSI_RESET +"    ";
 
         return eixoY;
     }
@@ -47,6 +53,7 @@ public class Tela {
         String ANSI_BLUE = "\u001B[34m";
         String ANSI_RED = "\u001B[31m";
         String ANSI_PURPLE = "\u001B[35m";
+        String ANSI_GREEN = "\u001B[033";
         
         switch (movimento) {
             case 5:

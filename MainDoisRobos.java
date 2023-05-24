@@ -73,8 +73,8 @@ public class MainDoisRobos {
                 tela.moverRobo(walle);
                 tela.mostrarPlano();
 
-                System.out.printf("ultimo movimento: %d\n", movimento);
-                System.out.println(e);
+                System.out.println(e + " " + movimento);
+                
                 walle.setQtdMovimentoInvalido();
                 tela.mostrarTransição(2000);
             } 
@@ -111,8 +111,7 @@ public class MainDoisRobos {
                 tela.moverRobo(eva);
                 tela.mostrarPlano();
 
-                System.out.printf("ultimo movimento: %d\n", movimento);
-                System.out.println(e);
+                System.out.println(e + " " + movimento);
 
                 eva.setQtdMovimentoInvalido();
                 tela.mostrarTransição(2000);
