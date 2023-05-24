@@ -79,7 +79,7 @@ public class RoboManual {
             
         } while (tesouro != true);
 
-        System.out.println("Finalmente " + ANSI_BLUE + "wall-e" + ANSI_RESET +" encontrou o alimento!!");
+        System.out.println("Finalmente " + ANSI_BLUE + "wall-e" + ANSI_RESET +" encontrou a bateria!!");
         entrada.close();
         
     }

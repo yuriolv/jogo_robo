@@ -34,6 +34,7 @@ public class MainDoisRobos {
                 newEixoY = tela.definirAlimento(eixoY, eixoX);
             } catch(PosicaoInvalidaException e) {
                 System.out.println(e);
+                tela.mostrarTransição(2000);
             }
             tela.ClearConsole();
         }while(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0);
@@ -73,10 +74,9 @@ public class MainDoisRobos {
                 tela.moverRobo(walle);
                 tela.mostrarPlano();
 
-                System.out.printf("ultimo movimento: %d\n", movimento);
-                System.out.println(e);
-                walle.setQtdMovimentoInvalido();
+                System.out.println(e + " " + movimento);
                 tela.mostrarTransição(2000);
+                walle.setQtdMovimentoInvalido();
             } 
             tela.ClearConsole();
             alimentoEncontradoWalle = tela.checarEncontroAlimento(walle, eixoX, newEixoY);
@@ -111,11 +111,10 @@ public class MainDoisRobos {
                 tela.moverRobo(eva);
                 tela.mostrarPlano();
 
-                System.out.printf("ultimo movimento: %d\n", movimento);
-                System.out.println(e);
+                System.out.println(e + " " + movimento);
+                tela.mostrarTransição(2000);
 
                 eva.setQtdMovimentoInvalido();
-                tela.mostrarTransição(2000);
                 tela.ClearConsole();
             }
             tela.ClearConsole();
@@ -125,9 +124,9 @@ public class MainDoisRobos {
         }
         tela.mostrarPlano();
         if(alimentoEncontradoWalle == true)
-            System.out.println(ANSI_BLUE+"Walle Encontrou alimento"+ANSI_RESET);
+            System.out.println(ANSI_BLUE+"Walle Encontrou a bateria"+ANSI_RESET);
         else 
-            System.out.println(ANSI_RED+"Eva Encontrou alimento"+ANSI_RESET);
+            System.out.println(ANSI_RED+"Eva Encontrou a bateria"+ANSI_RESET);
 
         tela.mostrarResultado(walle, eva);
 

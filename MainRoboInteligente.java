@@ -129,7 +129,6 @@ public class MainRoboInteligente {
         
         tela.mostrarPlano();
         tela.mostrarTransição(2000);
-        tela.ClearConsole();
 
         tela.mostrarResultado(walle, eva);
         leitor.close();
