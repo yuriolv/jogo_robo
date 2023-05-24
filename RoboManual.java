@@ -13,7 +13,7 @@ public class RoboManual {
         String ANSI_BLUE = "\u001B[34m";
         
         boolean tesouro = false;
-        int movimento, eixoX, eixoY, newEixoY = 0;
+        int movimento = 0, eixoX, eixoY, newEixoY = 0;
         
         String comando;
 
@@ -53,9 +53,9 @@ public class RoboManual {
 
             System.out.print("Digite a direção: ");
             comando = entrada.next();
-            movimento = walle.transformarComando(comando);
-
-             try {
+            
+            try {
+                movimento = walle.transformarComando(comando);
                 tela.moverRobo(walle, movimento);
 
                 walle.mover(movimento);
