@@ -129,10 +129,7 @@ public class MainDoisRobos {
         else 
             System.out.println(ANSI_RED+"Eva Encontrou alimento"+ANSI_RESET);
 
-        System.out.printf("Quantidade de movimentos validos de Walle: %d\n", walle.getQtdMovimentoValido());
-        System.out.printf("Quantidade de movimentos invalidos de Walle: %d\n", walle.getQtdMovimentoInvalido());
-        System.out.printf("Quantidade de movimentos validos de Eva: %d\n", eva.getQtdMovimentoValido());
-        System.out.printf("Quantidade de movimentos invalidos de Eva: %d\n", eva.getQtdMovimentoInvalido());
+        tela.mostrarResultado(walle, eva);
 
         entrada.close();
     }

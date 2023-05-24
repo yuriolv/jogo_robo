@@ -30,6 +30,7 @@ public class MainRoboInteligente {
                 newEixoY = tela.definirAlimento(eixoY, eixoX); 
             } catch (PosicaoInvalidaException e) {
                 System.out.println(e);
+                tela.mostrarTransição(2000);
             }
             tela.ClearConsole();
         }while(eixoX > 4 || eixoY > 4 || eixoX < 0 || eixoY < 0);
@@ -41,7 +42,7 @@ public class MainRoboInteligente {
         
         do {
             if(tesouroWalle==false){
-                System.out.println("    -----------Vez do robô comum-------------\n");
+                System.out.println("   -------------Vez do robô comum-------------\n");
                 tela.mostrarPlano();
                 tela.mostrarTransição(1000);
                 tela.ClearConsole();
@@ -53,7 +54,7 @@ public class MainRoboInteligente {
                 } catch (PosicaoInvalidaException e) {
                     System.out.println(e);
                 }
-                System.out.println("    -----------Vez do robô comum-------------\n");
+                System.out.println("   -------------Vez do robô comum-------------\n");
                 movimento = walle.gerarMovimento();
                 try {
 
@@ -79,7 +80,7 @@ public class MainRoboInteligente {
 
             
             if(tesouroEva == false){
-                System.out.println("    -----------Vez do robô inteligente-------------\n");
+                System.out.println(" -----------Vez do robô inteligente-----------\n");
                 tela.mostrarPlano();
                 tela.mostrarTransição(1000);
                 tela.ClearConsole();
@@ -92,7 +93,7 @@ public class MainRoboInteligente {
                     System.out.println(e);
                 } 
 
-                System.out.println("    -----------Vez do robô inteligente-------------\n");
+                System.out.println(" -----------Vez do robô inteligente-----------\n");
                 movimento = eva.gerarMovimento();
                 try {
                 

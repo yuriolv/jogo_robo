@@ -78,11 +78,6 @@ public class Tela {
             plano[eixoY][eixoX] = ANSI_RED+"R    "+ANSI_RESET;
         else 
             plano[eixoY][eixoX] = ANSI_BLUE+"R    "+ANSI_RESET; 
-            if(robo.getCor().equals("Vermelho"))
-            plano[eixoY][eixoX] = "R    ";
-            
-        else 
-            plano[eixoY][eixoX] ="R    ";    
     }
 
 
